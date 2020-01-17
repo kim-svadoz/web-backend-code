@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +24,14 @@ public class ListServlet extends HttpServlet {
 		ArrayList<DeptDTO> deptlist = new ArrayList<DeptDTO>();
 		deptlist = daoImpl.getDeptList();
 		
-		pw.write("<table border='1', width='500px'>");
+		// 데이터 공유
+		request.setAttribute("deptList", deptlist);
+		
+		// 응답화면으로 요청 재지정
+		RequestDispatcher rd = request.getRequestDispatcher("/dept/list.jsp");
+		rd.forward(request, response);
+		
+		/*pw.write("<table border='1', width='500px'>");
 		pw.print("<h1>부서목록보기</h1>");
 		pw.print("<hr/>");
 		pw.write("<tr>");
@@ -45,7 +54,7 @@ public class ListServlet extends HttpServlet {
 			+deptlist.get(i).getDeptNo()+"&info=test'>삭제</a></td>");
 			pw.write("</tr>");
 		}
-		pw.write("</table>");
+		pw.write("</table>");*/
 	}
 	
 	

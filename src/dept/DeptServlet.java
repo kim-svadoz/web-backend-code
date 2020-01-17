@@ -3,6 +3,7 @@ package dept;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,12 +30,25 @@ public class DeptServlet extends HttpServlet {
 		//2. 비즈니스 메소드
 		DeptDAOImpl daoImpl = new DeptDAOImpl();
 		int result = daoImpl.insert(dept);
+		
+		//3. 데이터 공유
+		request.setAttribute("insertResult", result);
+		
+		//4. 응답화면으로 요청 재지정
+		RequestDispatcher rd = request.getRequestDispatcher("/dept/insertResult.jsp");
+		rd.forward(request, response);
+		
+		
+		
+		//response.sendRedirect("/serverweb/dept/insertResult.html");
+		/*
 		//3. 응답화면 생성
 		if(result==1) {
 			System.out.println("INSERT success!");
 		}else {
 			System.out.println("INSERT fail...");
-		}
+		}*/
+		
 	}
 
 	
