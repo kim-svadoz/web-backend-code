@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +10,10 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<div><a href="/serverweb/member/list.do">멤버목록 보기</a>"</div>
 	<div class="container-fluid">
 			<form role="form" class="form-horizontal"
-				action="/template/deptinsert.do" method="POST" 
+				action="/serverweb/member/insert.do" method="POST" 
 				name="myform">
 				<fieldset>
 					<div id="legend">
